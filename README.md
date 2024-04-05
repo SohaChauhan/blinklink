@@ -1,3 +1,5 @@
+This is my full stack web development project which is under development right now. The project is clone to develop a clone of linktree where the user can have his/her personalized page with custom url where he/she can put various links to social accounts and websites add that custom url to any bio or share it to any one.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
