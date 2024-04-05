@@ -14,11 +14,15 @@ export const authOptions = {
     signUp: "register/signup",
     newUser: "/register/signup", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
-  //   callbacks: {
-  //     async redirect({ url, baseUrl }) {
-  //       return baseUrl;
-  //     },
-  //   },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
+    },
+  },
 };
 
 export const handler = NextAuth(authOptions);

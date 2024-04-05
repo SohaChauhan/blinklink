@@ -20,13 +20,13 @@ export default function LinksLayout({ children }) {
               className={`text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200`}
             >
               <Link href="/links" className="flex items-center">
-                <span class="material-symbols-outlined px-1">add_link</span>
+                <span className="material-symbols-outlined px-1">add_link</span>
                 Links
               </Link>
             </li>
             <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
               <Link href="/links/appearance" className="flex items-center">
-                <span class="material-symbols-outlined px-1">
+                <span className="material-symbols-outlined px-1">
                   slide_library
                 </span>
                 Appearance
@@ -34,13 +34,15 @@ export default function LinksLayout({ children }) {
             </li>
             <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
               <Link href="/links/analytics" className="flex items-center">
-                <span class="material-symbols-outlined px-1">analytics</span>
+                <span className="material-symbols-outlined px-1">
+                  analytics
+                </span>
                 Analytics
               </Link>
             </li>
             <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
               <Link href="/links/settings" className="flex items-center">
-                <span class="material-symbols-outlined px-1">settings</span>
+                <span className="material-symbols-outlined px-1">settings</span>
                 Settings
               </Link>
             </li>
@@ -48,7 +50,7 @@ export default function LinksLayout({ children }) {
         </div>
         <div className="flex">
           <button className="text-lg flex items-center py-3 px-5 bg-white border-2 border-neutral-200 rounded-full mr-3 hover:ease-in hover:duration-200 hover:bg-neutral-200">
-            <span class="material-symbols-outlined pr-1 ">share</span>
+            <span className="material-symbols-outlined pr-1 ">share</span>
             Share
           </button>
           <button className="text-lg flex items-center py-3 px-5 bg-white border-2 border-neutral-200 rounded-full mr-3 hover:ease-in hover:duration-200 hover:bg-neutral-200">
@@ -60,25 +62,27 @@ export default function LinksLayout({ children }) {
         <ul className="list-none w-full flex place-content-around">
           <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
             <Link href="/links" className="flex items-center">
-              <span class="material-symbols-outlined px-1">add_link</span>
+              <span className="material-symbols-outlined px-1">add_link</span>
               Links
             </Link>
           </li>
           <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
             <Link href="/links/appearance" className="flex items-center">
-              <span class="material-symbols-outlined px-1">slide_library</span>
+              <span className="material-symbols-outlined px-1">
+                slide_library
+              </span>
               Appearance
             </Link>
           </li>
           <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
             <Link href="/links/analytics" className="flex items-center">
-              <span class="material-symbols-outlined px-1">analytics</span>
+              <span className="material-symbols-outlined px-1">analytics</span>
               Analytics
             </Link>
           </li>
           <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
             <Link href="/links/settings" className="flex items-center">
-              <span class="material-symbols-outlined px-1">settings</span>
+              <span className="material-symbols-outlined px-1">settings</span>
               Settings
             </Link>
           </li>

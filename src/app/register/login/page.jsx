@@ -64,7 +64,9 @@ export default function Login() {
 
           <p className="my-4 text-neutral-600">OR</p>
           <button
-            onClick={() => signIn("google", { callbackUrl: "/links" })}
+            onClick={() =>
+              signIn("google", { callbackUrl: "http://localhost:3000/links" })
+            }
             className="bg-white border border-neutral-200 hover:bg-neutral-200 hover:ease-in hover:duration-200 flex items-center  place-content-center w-2/3 h-12 rounded-3xl text-[0.95rem]"
           >
             <img src="/google.png" className="w-6 mr-3" />

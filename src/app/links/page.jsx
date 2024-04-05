@@ -4,7 +4,7 @@ export default function Links() {
       <section className=" md:h-full md:w-7/12 h-fit w-full ml-2 block border-r border-neutral-300 ">
         <div className="bg-lime-300 py-2 px-4 flex flex-row place-content-between h-24 xl:h-20 rounded-2xl m-2">
           <div className="my-auto flex items-center">
-            <span class="material-symbols-outlined my-auto pr-2">
+            <span className="material-symbols-outlined my-auto pr-2">
               captive_portal
             </span>
             <span>
