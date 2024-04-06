@@ -2,6 +2,8 @@
 
 This is my Full Stack Web Development project which is under development right now. The project is to develop a clone of LinkTree where the user can have his/her personalized page with custom URL where he/she can put various links to social accounts and websites add that custom URL to any bio or share it to anyone.
 
+The project uses technologies like NextJS, TailwindCSS, NextAuthJS, ExpressJS, MongoDB.  
+
 Here are some of the screenshots of the webpages developed till now. This is still under development so this is not the final ones.
 ![image](https://github.com/SohaChauhan/blinklink/assets/125130415/fd379923-9611-481a-937e-5e9aed5582fd)
 ![image](https://github.com/SohaChauhan/blinklink/assets/125130415/c07a0ac1-168b-44ee-9e9e-1e52564de108)
