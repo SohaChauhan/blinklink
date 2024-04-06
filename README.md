@@ -1,4 +1,12 @@
-This is my full stack web development project which is under development right now. The project is clone to develop a clone of linktree where the user can have his/her personalized page with custom url where he/she can put various links to social accounts and websites add that custom url to any bio or share it to any one.
+## About the BlinkLink
+
+This is my Full Stack Web Development project which is under development right now. The project is to develop a clone of LinkTree where the user can have his/her personalized page with custom URL where he/she can put various links to social accounts and websites add that custom URL to any bio or share it to anyone.
+
+Here are some of the screenshots of the webpages developed till now. This is still under development so this is not the final ones.
+![image](https://github.com/SohaChauhan/blinklink/assets/125130415/fd379923-9611-481a-937e-5e9aed5582fd)
+![image](https://github.com/SohaChauhan/blinklink/assets/125130415/c07a0ac1-168b-44ee-9e9e-1e52564de108)
+![image](https://github.com/SohaChauhan/blinklink/assets/125130415/e7a45756-b4f6-4b67-9113-c434bf96e352)
+![image](https://github.com/SohaChauhan/blinklink/assets/125130415/184f457d-d36b-496f-93e2-5d8223fcfcdd)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
