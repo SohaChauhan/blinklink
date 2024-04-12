@@ -1,4 +1,4 @@
-export default function Links() {
+export default async function Links() {
   return (
     <section className="flex h-full md:flex-row flex-col ">
       <section className=" md:h-full md:w-7/12 h-fit w-full ml-2 block border-r border-neutral-300 ">

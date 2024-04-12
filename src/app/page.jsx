@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import localFont from "next/font/local";
-import { Poppins } from "next/font/google";
 
-const myFont = localFont({ src: "./BauhausStd-Demi.woff2" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
+const myFont = localFont({ src: "./fonts/BauhausStd-Demi.woff2" });
+const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 export default function Home() {
   return (
     <>
@@ -22,17 +21,17 @@ export default function Home() {
           <button
             className={`${poppins.className} text-base sm:flex items-center py-3 w-28 place-content-around sm:visible hidden bg-white border border-neutral-600 rounded-full mr-3 hover:ease-in hover:duration-200 hover:bg-lime-300 text-black`}
           >
-            <Link href="/register/login">LogIn</Link>
+            <Link href="/login">LogIn</Link>
           </button>
           <button className="text-base sm:flex items-center py-3 w-28 place-content-around sm:visible hidden bg-white border border-neutral-600 rounded-full mr-3 hover:ease-in hover:duration-200 hover:bg-lime-300">
-            <Link href="/register/signup">SignUp</Link>
+            <Link href="/signup">SignUp</Link>
           </button>
         </div>
       </nav>
       <div className="rounded-[60px] h-[650px] mx-6 flex bg-purple-600 shadow-[0px_1px_25px_10px_rgba(0,0,0,0.15)]">
-        <div className=" rounded-l-2xl h-full lg:w-5/12">
+        <div className="lg:visible collapse rounded-l-2xl h-full lg:w-5/12">
           <img
-            className="w-[550px] ml-14 my-32 hover:w-[570px] hover:ml-12 hover:cursor-pointer hover:ease-in-out hover:duration-300"
+            className="w-10/12 mx-auto  my-32 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
             src="/g-1.png"
             alt="BlinkLink"
           />

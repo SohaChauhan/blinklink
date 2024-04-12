@@ -7,12 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      screens: {
-        "sm-h": { min: "576px" }, // Custom min-height breakpoint for small screens
-        "md-h": { min: "768px" }, // Custom min-height breakpoint for medium screens
-        "lg-h": { min: "992px" }, // Custom min-height breakpoint for large screens
-        "xl-h": { min: "1200px" }, // Custom min-height breakpoint for extra-large screens
-        // Add more custom min-height breakpoints as needed
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },

@@ -1,0 +1,5 @@
+MONGODB_URI="mongodb://localhost:27017/blinklink"
+NEXTAUTH_SECRET="Sohanckmnj"
+NEXTAUTH_URL="http://localhost:3000/"
+GOOGLE_CLIENT_ID="919980442907-bsojeh9td7f9imldf5qvltfmnn1ifk0t.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
