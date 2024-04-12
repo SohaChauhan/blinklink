@@ -112,7 +112,7 @@ export default function Login() {
             </button>
           </form>
           <p className="text-xs">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <span>
               <Link
                 href="/signup"
