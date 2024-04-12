@@ -3,7 +3,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const page = () => {
+export default function Account() {
   const { data: session } = useSession();
   const [name, setName] = useState("");
   const [change, setChange] = useState(false);
@@ -101,6 +101,4 @@ const page = () => {
       )}
     </>
   );
-};
-
-export default page;
+}
