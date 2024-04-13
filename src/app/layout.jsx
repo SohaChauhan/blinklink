@@ -2,7 +2,7 @@ import "./globals.css";
 import Head from "next/head";
 import localFont from "next/font/local";
 import NextAuthProvider from "../../context/NextAuthProvider";
-
+import { Suspense } from "react";
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 
 export default function RootLayout({ children }) {
@@ -25,7 +25,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} bg-neutral-100 container min-w-full h-fit overflow-x-hidden m-0 `}
       >
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <Suspense fallback={<div>Loading...</div>}>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </Suspense>
       </body>
     </html>
   );
