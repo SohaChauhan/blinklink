@@ -14,7 +14,9 @@ async function login(credentials) {
 
     if (!isCorrect) throw new Error("wrong credentials");
     return user;
-  } catch (er) {}
+  } catch (er) {
+    return er;
+  }
 }
 
 async function createUserIfNotExists(token) {
