@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         />
       </Head>
       <body
-        className={`${poppins.className} bg-neutral-100 container min-w-full h-fit overflow-x-hidden m-0`}
+        className={`${poppins.className} bg-neutral-100 container min-w-full h-fit overflow-x-hidden m-0 `}
       >
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>

@@ -25,12 +25,15 @@ async function createUserIfNotExists(token) {
   if (!user) {
     user = await new UserModel({
       email: token.email,
-      username: token.name,
+      name: token.name,
       image: token.picture,
     }).save();
   }
+  if (user) {
+    token.name = user.name;
+  }
 
-  return user;
+  // return user;
 }
 
 export const authOptions = {
@@ -69,9 +72,8 @@ export const authOptions = {
       if (user) {
         token.id = user._id;
         token.email = user.email;
-        token.name = user.username;
-        token.picture = user.image;
-        const newUser = await createUserIfNotExists(token);
+        console.log(user);
+        await createUserIfNotExists(token);
         console.log("this is token", token);
       }
       return token;
@@ -80,7 +82,7 @@ export const authOptions = {
       if (token) {
         session.id = token.id;
         session.email = token.email;
-        session.username = token.name;
+        session.name = token.name;
       }
       return session;
     },

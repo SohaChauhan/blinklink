@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import localFont from "next/font/local";
+import GetStartedButton from "./ui/GetStartedButton";
 
 const myFont = localFont({ src: "./fonts/BauhausStd-Demi.woff2" });
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
@@ -43,25 +44,7 @@ export default function Home() {
             >
               Discover, connect, explore. All in one single link in the bio.
             </p>
-            <div
-              className={`flex lg:w-auto w-2/3 5 sm:mt-8 mt-5 items-center sm:flex-row flex-col place-content-between ${poppins.className}`}
-            >
-              <div className="flex sm:w-1/2 w-full sm:mb-0 mb-2 mt-0 min-w-fit bg-neutral-200 rounded-3xl sm:p-5 p-4 ">
-                <p className="">
-                  <label>blinklink/</label>
-                </p>
-                <input
-                  type="text"
-                  placeholder="yourname"
-                  className="bg-neutral-200 w-24 sm:w-36 outline-none text-stone-500"
-                />
-              </div>
-              <div>
-                <button className=" py-4 px-7 min-w-[216.25px] bg-[#4c956c] rounded-full mx-3 hover:ease-in hover:duration-200 hover:bg-[#397051] text-white *:">
-                  Claim your BlinkLink
-                </button>
-              </div>
-            </div>
+            <GetStartedButton />
           </div>
         </div>
       </div>
@@ -82,7 +65,7 @@ export default function Home() {
               <button
                 className={`${poppins.className} py-4 px-7 bg-lime-300 rounded-full mx-3 mt-5 w-1/3 min-w-fit hover:ease-in hover:duration-200 hover:bg-lime-400 text-black`}
               >
-                Get Started
+                <Link href="/signup">Get Started</Link>
               </button>
             </div>
           </div>
@@ -106,7 +89,7 @@ export default function Home() {
               <button
                 className={`${poppins.className} py-4 px-7 bg-purple-600 rounded-full mx-3 mt-5 w-1/3 min-w-fit hover:ease-in hover:duration-200 hover:bg-purple-700 text-white`}
               >
-                Get Started
+                <Link href="/signup">Get Started</Link>
               </button>
             </div>
           </div>
@@ -129,7 +112,7 @@ export default function Home() {
             <button
               className={`${poppins.className} py-4 px-7 bg-[#4c956c] rounded-full mx-3 mt-5 w-2/5 min-w-fit hover:ease-in hover:duration-200 hover:bg-[#397051] text-white`}
             >
-              Get Started
+              <Link href="/signup">Get Started</Link>
             </button>
           </div>
           <div className="rounded-r-2xl h-full w-1/3 lg:visible collapse"></div>
@@ -168,7 +151,7 @@ export default function Home() {
               <button
                 className={`${poppins.className} py-4 px-7 bg-white rounded-full mx-3 mt-5 w-1/3 min-w-fit hover:ease-in hover:duration-200 hover:bg-neutral-200 text-black`}
               >
-                Get Started
+                <Link href="/signup">Get Started</Link>
               </button>
             </div>
           </div>
@@ -194,11 +177,11 @@ export default function Home() {
           <p className=" text-md mx-8">
             Get you own personalized BlinkLink page now.
             <button className="sm:hidden visible text-md min-w-fit flex items-center py-3 px-7 bg-lime-300 text-black rounded-full mt-4 ml-0 hover:ease-in hover:duration-200 hover:bg-lime-400">
-              SignUp for Free
+              <Link href="/signup">Get Started</Link>
             </button>
           </p>
           <button className="sm:visible collapse text-md min-w-fit flex items-center py-3 px-7 bg-lime-300 text-black rounded-full mr-3 hover:ease-in hover:duration-200 hover:bg-lime-400">
-            SignUp for Free
+            <Link href="/signup">Get Started</Link>
           </button>
         </div>
       </footer>

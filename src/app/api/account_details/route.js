@@ -7,13 +7,13 @@ export async function POST(req) {
 
   try {
     await connectDb();
-    const { email, username } = await req.json();
+    const { email, name } = await req.json();
 
     const user = await UserModel.findOne({ email });
     if (!user) {
       return NextResponse.json({ message: "error" }, { status: 404 });
     }
-    await UserModel.findOneAndUpdate({ email }, { username });
+    await UserModel.findOneAndUpdate({ email }, { name });
     return NextResponse.json(
       { message: "update successfull" },
       { status: 201 }

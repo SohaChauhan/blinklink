@@ -21,7 +21,7 @@ export default function Account() {
       const response = await fetch("/api/account_details", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: session.user.email, username: name }),
+        body: JSON.stringify({ email: session.user.email, name: name }),
       });
       if (!response.ok) {
         return;

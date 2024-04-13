@@ -9,7 +9,7 @@ export async function POST(req) {
 
   try {
     await connectDb();
-    const { username, email, password } = await req.json();
+    const { name, email, password } = await req.json();
     // console.log(username);
     const user = await UserModel.findOne({ email });
     // console.log(user);
@@ -21,7 +21,7 @@ export async function POST(req) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    await UserModel.create({ username, email, password: hashedPassword });
+    await UserModel.create({ name, email, password: hashedPassword });
     return NextResponse.json({ message: "register success" }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });

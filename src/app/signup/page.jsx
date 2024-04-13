@@ -1,19 +1,27 @@
 "use client";
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
-
+import { useEffect } from "react";
 import Link from "next/link";
 import "./signup.css";
 import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
-
+import { useSearchParams } from "next/navigation";
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 export default function Signup() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
+  const searchParams = useSearchParams();
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pending, setPending] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const name = searchParams.get("username");
+    setName(name);
+  }, [name]);
 
   const handleSigninwithGoogle = async () => {
     await signIn("google", { callbackUrl: "http://localhost:3000/admin" });
@@ -22,8 +30,8 @@ export default function Signup() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -31,16 +39,18 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === "" || email === "" || username === "") {
+    if (password === "" || email === "" || name === "") {
       setError("Please fill the email and password");
       return;
     }
     try {
+      setPending(true);
+
       const response = await fetch("/api/signin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username,
+          name,
           email,
           password,
         }),
@@ -54,6 +64,8 @@ export default function Signup() {
       }
       router.push("/login");
     } catch (error) {
+      setPending(false);
+
       setError("Email already exists");
     }
   };
@@ -106,9 +118,9 @@ export default function Signup() {
             <div className="form-control h-12 my-2 relative w-2/3">
               <input
                 type="text"
-                name="username"
-                value={username}
-                onChange={handleUsernameChange}
+                name="name"
+                value={name}
+                onChange={handleNameChange}
                 className="bg-neutral-200 rounded-2xl h-full w-full border-none outline-none focus:outline-[#4c956c] px-0 py-5 text-sm"
               />
               <label className=" absolute left-5 top-1/2 translate-y-[-55%] text-[0.85rem] pointer-events-none transition-all duration-100 ease-in">
@@ -118,10 +130,11 @@ export default function Signup() {
             {error && <span className="text-sm text-red-500">{error}</span>}
             <button
               type="submit"
+              disabled={pending ? true : false}
               className="bg-lime-300 w-2/3 h-12 my-4 rounded-3xl text-[0.95rem] hover:ease-in hover:duration-200 hover:bg-lime-400 "
             >
               {" "}
-              Create Account
+              {pending ? "Creating Account" : "Create Account"}
             </button>
           </form>
           <p className="text-xs">
