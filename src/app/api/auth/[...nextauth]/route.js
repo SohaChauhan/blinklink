@@ -15,7 +15,7 @@ async function login(credentials) {
     if (!isCorrect) throw new Error("wrong credentials");
     return user;
   } catch (er) {
-    return er;
+    throw new Error("failed to login");
   }
 }
 
