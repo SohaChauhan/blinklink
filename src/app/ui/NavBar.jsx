@@ -25,7 +25,7 @@ const NavBar = () => {
             <li
               className={
                 `text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200` +
-                (path === "/account" ? "bg-stone-200" : "bg-none")
+                (path === "/admin" ? "bg-stone-200" : "bg-none")
               }
             >
               <Link href="/admin" className="flex items-center">

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 const Logout_button = () => {
   const router = useRouter();
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "https://blinklink-smoky.vercel.app/login" });
+    await signOut({ callbackUrl: "http://localhost:3000/login" });
 
     router.replace("/login");
     console.log("Logged Out");
