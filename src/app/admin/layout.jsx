@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import Session from "../ui/Session";
-
+import { usePathname } from "next/navigation";
 export default function LinksLayout({ children }) {
+  const path = usePathname();
   return (
     <>
       <nav className="bg-white md:shadow-lg flex items-center rounded-none border-2 border-zinc-100 sticky z-10 top-1 mt-2 mx-1 md:rounded-full md:mx-3 place-content-between">
@@ -18,7 +19,10 @@ export default function LinksLayout({ children }) {
           </Link>
           <ul className="list-none flex md:visible collapse">
             <li
-              className={`text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200`}
+              className={
+                `text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200` +
+                (path === "/account" ? "bg-stone-200" : "bg-none")
+              }
             >
               <Link href="/admin" className="flex items-center">
                 <span className="material-symbols-outlined px-1">add_link</span>

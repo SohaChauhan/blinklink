@@ -23,7 +23,9 @@ export default function Login() {
     setPassword(e.target.value);
   };
   const handleSigninwithGoogle = async () => {
-    await signIn("google", { callbackUrl: "http://localhost:3000/admin" });
+    await signIn("google", {
+      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
+    });
   };
 
   const handleSubmit = async (e) => {

@@ -25,7 +25,9 @@ export default function Signup() {
   }, [name]);
 
   const handleSigninwithGoogle = async () => {
-    await signIn("google", { callbackUrl: "http://localhost:3000/admin" });
+    await signIn("google", {
+      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
+    });
   };
 
   const handleEmailChange = (e) => {
