@@ -1,44 +1,60 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import PageModel from "../../../models/PageModel";
+import { getServerSession } from "next-auth";
+import connectDb from "../../../utils/connectDB";
+import cloneDeep from "clone-deep";
+import AddLinks from "../ui/AddLinks";
+import Profile from "../ui/Profile";
+import UserModel from "../../../models/UserModel";
+import NavBar from "../ui/NavBar";
+
 export default async function Admin() {
-  return (
-    <section className="flex h-full md:flex-row flex-col ">
-      <section className=" md:h-full md:w-7/12 h-fit w-full ml-2 block border-r border-neutral-300 ">
-        <div className="bg-lime-300 py-2 px-4 flex flex-row place-content-between h-24 xl:h-20 rounded-2xl m-2">
-          <div className="my-auto flex items-center">
-            <span className="material-symbols-outlined my-auto pr-2">
-              captive_portal
-            </span>
-            <span>
-              Your Linktree is live:{" "}
-              <a
-                href="https://linktr.ee/soha_1911"
-                className="underline underline-offset-4"
-              >
-                linktr.ee/soha_1911
-              </a>
-            </span>
-          </div>
-          <button className="my-auto mx-0 py-4 px-6">
-            <span className="material-symbols-outlined">content_paste</span>
-          </button>
-        </div>
-        <div className="flex flex-col pr-2">
-          <div className=" text-xl bg-white mt-8 pt-8 pb-5 mx-16 px-8 rounded-xl flex flex-col shadow-md">
-            <p className="text-2xl font-bold ">Enter URL</p>
-            <input
-              type="text"
-              placeholder="URL"
-              className="bg-zinc-200 my-4 p-3 rounded-2xl w-full outline-none focus:outline-violet-400"
-            />
-            <button className="w-full bg-purple-600 rounded-full my-2 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200">
-              Add Link
-            </button>
-          </div>
-          <button className="px-5 py-3 w-fit ml-16 mt-7 bg-white border-2 border-zinc-200 rounded-2xl hover:bg-zinc-200 hover:ease-in hover:duration-200">
-            Add Header
-          </button>
-        </div>
-      </section>
-      <section className=" md:h-full md:w-5/12 h-fit w-full mr-2 block"></section>
-    </section>
-  );
+  const session = await getServerSession(authOptions);
+  await connectDb();
+  let page = await PageModel.findOne({ email: session?.user?.email });
+  let user = await UserModel.findOne({ email: page.email });
+
+  if (page) {
+    const leanPage = cloneDeep(page.toJSON());
+    leanPage._id = leanPage._id.toString();
+    const leanUser = cloneDeep(user.toJSON());
+    leanUser._id = leanUser._id.toString();
+    const link = "https://blinklink-smoky.vercel.app/" + leanUser.username;
+    // console.log("This is username: " + leanUser.username);
+    return (
+      <>
+        <NavBar user={leanUser} />
+        <section className="flex md:flex-row flex-col">
+          <section className="flex h-full flex-col xl:w-1/2 md:w-2/3 w-full px-8 pt-4 border-r">
+            <Profile page={leanPage} user={leanUser}></Profile>
+          </section>
+          <section className="flex h-full xl:flex-col xl:w-1/2 md:w-1/3 w-full md:py-4 pb-4 place-content-center">
+            {leanUser.username && (
+              <div className="bg-fuchsia-200 py-2 px-4 flex flex-row place-content-between h-20 rounded-2xl m-2">
+                <div className="my-auto flex items-center">
+                  <span className="material-symbols-outlined my-auto pr-2">
+                    captive_portal
+                  </span>
+                  <span className="text-sm">
+                    Your Linktree is live:{" "}
+                    <a href={link} className="underline underline-offset-4">
+                      {link}
+                    </a>
+                  </span>
+                </div>
+                <button className="my-auto mx-0 py-4 px-6">
+                  <span className="material-symbols-outlined">
+                    content_paste
+                  </span>
+                </button>
+              </div>
+            )}
+            <AddLinks></AddLinks>
+          </section>
+        </section>
+      </>
+    );
+  } else {
+    return <div></div>;
+  }
 }

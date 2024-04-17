@@ -1,15 +1,21 @@
 import { Schema, model, models } from "mongoose";
 const defaultImageUrl = "/default-profile-image.png";
 const UserSchema = new Schema({
-  name: {
-    type: String,
-  },
   email: {
     type: String,
     required: true,
   },
   password: {
     type: String,
+  },
+  username: {
+    type: String,
+    // unique: true,
+    default: "",
+  },
+  name: {
+    type: String,
+    default: "",
   },
   image: {
     type: String,

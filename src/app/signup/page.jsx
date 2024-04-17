@@ -6,35 +6,31 @@ import Link from "next/link";
 import "./signup.css";
 import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
+
 export default function Signup() {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const [name, setName] = useState("");
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [pending, setPending] = useState("");
+  const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    const name = searchParams.get("username");
-    setName(name);
-  }, [name]);
 
   const handleSigninwithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: "http://localhost:3000/admin",
+      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
     });
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const handleNameChange = (e) => {
-    setName(e.target.value);
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+    console.log(username);
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -42,34 +38,30 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === "" || email === "" || name === "") {
-      setError("Please fill the email and password");
+    if (password === "" || email === "" || username === "") {
+      setError("Please fill all the fields");
       return;
     }
     try {
       setPending(true);
-
-      const response = await fetch("/api/signin", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
+          username,
           email,
           password,
         }),
       });
-      // console.log(response.error);
       if (!response.ok) {
-        // setError("Email already exists");
-        // console.log(error);
+        setError(response.statusText);
         setPending(false);
         return;
       }
       router.push("/login");
     } catch (error) {
       setPending(false);
-
-      setError("Email already exists");
+      setError(error);
     }
   };
   return (
@@ -122,9 +114,9 @@ export default function Signup() {
               <div className="form-control h-12 my-2 relative w-2/3">
                 <input
                   type="text"
-                  name="name"
-                  value={name}
-                  onChange={handleNameChange}
+                  name="username"
+                  value={username}
+                  onChange={handleUserNameChange}
                   className="bg-neutral-200 rounded-2xl h-full w-full border-none outline-none focus:outline-[#4c956c] px-0 py-5 text-sm"
                 />
                 <label className=" absolute left-5 top-1/2 translate-y-[-55%] text-[0.85rem] pointer-events-none transition-all duration-100 ease-in">
@@ -135,7 +127,7 @@ export default function Signup() {
               <button
                 type="submit"
                 disabled={pending ? true : false}
-                className="bg-lime-300 w-2/3 h-12 my-4 rounded-3xl text-[0.95rem] hover:ease-in hover:duration-200 hover:bg-lime-400 "
+                className="bg-lime-300 w-2/3 h-12 my-4 rounded-3xl text-[0.95rem] hover:ease-in hover:duration-200 hover:bg-lime-400 disabled:bg-neutral-300"
               >
                 {" "}
                 {pending ? "Creating Account" : "Create Account"}

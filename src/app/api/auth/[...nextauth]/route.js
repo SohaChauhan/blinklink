@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { signIn, signOut } from "next-auth/react";
 import GoogleProvider from "next-auth/providers/google";
+import PageModel from "../../../../../models/PageModel";
 
 async function login(credentials) {
   try {
@@ -21,18 +22,46 @@ async function login(credentials) {
 
 async function createUserIfNotExists(token) {
   await connectDb();
-
   let user = await UserModel.findOne({ email: token.email });
+  let page = await PageModel.findOne({ email: token.email });
 
   if (!user) {
     user = await new UserModel({
       email: token.email,
+      username: token.username,
       name: token.name,
       image: token.picture,
     }).save();
+    page = await new PageModel({
+      username: token.username,
+      email: token.email,
+      name: token.name,
+    }).save();
   }
   if (user) {
-    token.name = user.name;
+    if (user.name != "") {
+      token.name = user.name;
+    } else {
+      await UserModel.findOneAndUpdate(
+        { email: token.email },
+        { name: token.name }
+      );
+      await PageModel.findOneAndUpdate(
+        { email: token.email },
+        { name: token.name }
+      );
+    }
+    if (user.image === "/default-profile-image.png") {
+      await UserModel.findOneAndUpdate(
+        { email: token.email },
+        { image: token.picture }
+      );
+    } else {
+      token.picture = user.image;
+    }
+    if (user.username != "") {
+      token.username = user.username;
+    }
   }
 
   // return user;
@@ -72,9 +101,14 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        // console.log(token);
+        // console.log(user);
         token.id = user._id;
         token.email = user.email;
-        console.log(user);
+        token.username = user.username;
+        token.name = user.name;
+        token.picture = user.image;
+        // console.log(user);
         await createUserIfNotExists(token);
         console.log("this is token", token);
       }
@@ -82,10 +116,13 @@ export const authOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        session.id = token.id;
-        session.email = token.email;
-        session.name = token.name;
+        session.user.id = token.id;
+        session.user.email = token.email;
+        session.user.name = token.name;
+        session.user.username = token.username;
+        // console.log("this is session", session);
       }
+
       return session;
     },
   },

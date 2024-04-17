@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import localFont from "next/font/local";
-import GetStartedButton from "./ui/GetStartedButton";
 
 const myFont = localFont({ src: "./fonts/BauhausStd-Demi.woff2" });
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
@@ -37,14 +36,18 @@ export default function Home() {
             alt="BlinkLink"
           />
         </div>
-        <div className="rounded-[50px]  lg:w-7/12  w-full bg-white">
-          <div className="place-content-center h-full items-center flex flex-col lg-h:py-0 py-10">
+        <div className="rounded-[50px]  lg:w-7/12 flex flex-col items-center place-content-center w-full bg-white">
+          <div className="w-8/12">
             <p
-              className={`font-extrabold sm:text-7xl text-6xl w-8/12 ${myFont.className}`}
+              className={`font-extrabold sm:text-7xl text-6xl ${myFont.className}`}
             >
               Discover, connect, explore. All in one single link in the bio.
             </p>
-            <GetStartedButton />
+            <button
+              className={`${poppins.className} py-4 px-7 bg-[#4c956c] rounded-full mx-3 mt-5 w-1/3 min-w-fit hover:ease-in hover:duration-200 hover:bg-[#397051] text-white`}
+            >
+              <Link href="/signup">Get Started</Link>
+            </button>
           </div>
         </div>
       </div>

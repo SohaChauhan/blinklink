@@ -10,7 +10,7 @@ const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [pending, setPending] = useState("");
+  const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
 
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function Login() {
   };
   const handleSigninwithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: "http://localhost:3000/admin",
+      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
     });
   };
 

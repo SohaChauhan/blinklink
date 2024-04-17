@@ -5,13 +5,13 @@ import Image from "next/image";
 import Session from "../ui/Session";
 import { usePathname } from "next/navigation";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   const path = usePathname();
-
+  //   console.log(path);
   return (
     <>
-      <nav className="bg-white md:shadow-lg flex items-center rounded-none border-2 border-zinc-100 sticky z-10 top-1 mt-2 mx-1 md:rounded-full md:mx-3 place-content-between">
-        <div className="flex items-center w-0 md:w-full">
+      <nav className="bg-white shadow-lg flex items-center border-2 border-zinc-100 sticky z-10 top-1 mt-2 rounded-full mx-3 place-content-between">
+        <div className="flex items-center w-full">
           <Link href="/admin">
             <Image
               className="mx-5 my-5"
@@ -21,10 +21,10 @@ const NavBar = () => {
               alt="Picture of the author"
             />
           </Link>
-          <ul className="list-none flex md:visible collapse">
+          <ul className="list-none flex max-[536px]:hidden">
             <li
               className={
-                `text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200` +
+                `text-lg py-3 px-2 mx-1  hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200 ` +
                 (path === "/admin" ? "bg-stone-200" : "bg-none")
               }
             >
@@ -33,26 +33,18 @@ const NavBar = () => {
                 Links
               </Link>
             </li>
-            <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
-              <Link href="/admin/appearance" className="flex items-center">
-                <span className="material-symbols-outlined px-1">
-                  slide_library
-                </span>
-                Appearance
-              </Link>
-            </li>
-            <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
+
+            <li
+              className={
+                `text-lg py-3 px-2 mx-1 hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200 ` +
+                (path === "/admin/analytics" ? "bg-stone-200" : "bg-none")
+              }
+            >
               <Link href="/admin/analytics" className="flex items-center">
                 <span className="material-symbols-outlined px-1">
                   analytics
                 </span>
                 Analytics
-              </Link>
-            </li>
-            <li className="text-lg p-3 md:visible collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
-              <Link href="/admin/settings" className="flex items-center">
-                <span className="material-symbols-outlined px-1">settings</span>
-                Settings
               </Link>
             </li>
           </ul>
@@ -62,35 +54,32 @@ const NavBar = () => {
             <span className="material-symbols-outlined pr-1 ">share</span>
             Share
           </button>
-          <Session />
+          <Session user={user} />
         </div>
       </nav>
       <div className="bg-white flex place-content-between h-14 items-center rounded-none border-2 border-zinc-100 sticky mx-1 md:hidden visible max-[536px]:hidden">
         <ul className="list-none w-full flex place-content-around">
-          <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
+          <li
+            className={
+              "text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200 " +
+              (path === "/admin" ? "bg-stone-200" : "bg-none")
+            }
+          >
             <Link href="/admin" className="flex items-center">
               <span className="material-symbols-outlined px-1">add_link</span>
               Links
             </Link>
           </li>
-          <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
-            <Link href="/admin/appearance" className="flex items-center">
-              <span className="material-symbols-outlined px-1">
-                slide_library
-              </span>
-              Appearance
-            </Link>
-          </li>
-          <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
+
+          <li
+            className={
+              "text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200 " +
+              (path === "/admin/analytics" ? "bg-stone-200" : "bg-none")
+            }
+          >
             <Link href="/admin/analytics" className="flex items-center">
               <span className="material-symbols-outlined px-1">analytics</span>
               Analytics
-            </Link>
-          </li>
-          <li className="text-lg p-2 md:collapse visible max-[536px]:collapse hover:bg-stone-200 rounded-2xl hover:ease-in hover:duration-200">
-            <Link href="/admin/settings" className="flex items-center">
-              <span className="material-symbols-outlined px-1">settings</span>
-              Settings
             </Link>
           </li>
         </ul>

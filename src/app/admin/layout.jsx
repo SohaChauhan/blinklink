@@ -1,9 +1,9 @@
-import NavBar from "../ui/NavBar";
+// import NavBar from "../ui/NavBar";
 
 export default function LinksLayout({ children }) {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       {children}
     </>
   );

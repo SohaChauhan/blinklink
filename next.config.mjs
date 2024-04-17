@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com"],
+    remotePatterns: [
+      {
+        hostname: "*.googleusercontent.com",
+      },
+      {
+        hostname: "blinklink-project.s3.amazonaws.com",
+      },
+    ],
   },
 };
-
 export default nextConfig;

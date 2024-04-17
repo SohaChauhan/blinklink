@@ -25,9 +25,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} bg-neutral-100 container min-w-full h-fit overflow-x-hidden m-0 `}
       >
-        <Suspense fallback={<div>Loading...</div>}>
-          <NextAuthProvider>{children}</NextAuthProvider>
-        </Suspense>
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );
