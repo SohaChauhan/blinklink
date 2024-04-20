@@ -29,7 +29,7 @@ export async function POST(req) {
     if (user1 && user.username != user1.username) {
       return NextResponse.json(
         { message: "Username already exists" },
-        { status: 500, statusText: "Username already exists" }
+        { status: 501, statusText: "Username already exists" }
       );
     }
     await UserModel.findOneAndUpdate({ email }, { username, image });

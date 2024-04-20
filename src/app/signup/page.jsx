@@ -53,6 +53,16 @@ export default function Signup() {
           password,
         }),
       });
+      if (response.status == 501) {
+        setError("Email already exists");
+        setPending(false);
+        return;
+      }
+      if (response.status == 502) {
+        setError("Username already exists");
+        setPending(false);
+        return;
+      }
       if (!response.ok) {
         setError(response.statusText);
         setPending(false);

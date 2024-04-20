@@ -51,6 +51,9 @@ const Profile = ({ page, user }) => {
           image,
         }),
       });
+      if (response.status == 501) {
+        setError("USername already exists.");
+      }
       if (!response.ok) {
         setError(response.statusText);
         setChange(true);

@@ -13,14 +13,14 @@ export async function POST(req) {
     if (user) {
       return NextResponse.json(
         { message: "Email already exists" },
-        { status: 500, statusText: "Email already exists" }
+        { status: 501, statusText: "Email already exists" }
       );
     }
     const user1 = await UserModel.findOne({ username });
     if (user1) {
       return NextResponse.json(
         { message: "Username already exists" },
-        { status: 500, statusText: "Username already exists" }
+        { status: 502, statusText: "Username already exists" }
       );
     }
 
