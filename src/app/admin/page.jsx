@@ -42,11 +42,6 @@ export default async function Admin() {
                     </a>
                   </span>
                 </div>
-                <button className="my-auto mx-0 py-4 px-6">
-                  <span className="material-symbols-outlined">
-                    content_paste
-                  </span>
-                </button>
               </div>
             )}
             <AddLinks page={leanPage}></AddLinks>
