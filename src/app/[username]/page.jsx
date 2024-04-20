@@ -87,7 +87,10 @@ const page = async ({ params }) => {
           )}
         </div>
         {page.links.map((link) => (
-          <div className="w-full flex items-center place-content-center">
+          <div
+            className="w-full flex items-center place-content-center"
+            key={link.key}
+          >
             {link.type === "link" && (
               <a
                 href={link.url}
