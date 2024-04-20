@@ -25,12 +25,12 @@ export default async function Admin() {
       <>
         <NavBar user={leanUser} />
         <section className="flex md:flex-row flex-col">
-          <section className="flex h-full flex-col xl:w-1/2 md:w-2/3 w-full px-8 pt-4 border-r">
+          <section className="flex h-full flex-col xl:w-1/2 md:w-2/3 w-full px-8 pt-4 pb-10 border-r">
             <Profile page={leanPage} user={leanUser}></Profile>
           </section>
-          <section className="flex h-full xl:flex-col xl:w-1/2 md:w-1/3 w-full md:py-4 pb-4 place-content-center">
+          <section className="flex h-full xl:flex-col xl:w-1/2 md:w-1/3 w-full md:py-4 pb-4 place-content-center px-5">
             {leanUser.username && (
-              <div className="bg-fuchsia-200 py-2 px-4 flex flex-row place-content-between h-20 rounded-2xl m-2">
+              <div className="bg-blue-100 py-2 px-4 flex flex-row place-content-between h-20 rounded-2xl m-2">
                 <div className="my-auto flex items-center">
                   <span className="material-symbols-outlined my-auto pr-2">
                     captive_portal
@@ -49,7 +49,7 @@ export default async function Admin() {
                 </button>
               </div>
             )}
-            <AddLinks></AddLinks>
+            <AddLinks page={leanPage}></AddLinks>
           </section>
         </section>
       </>

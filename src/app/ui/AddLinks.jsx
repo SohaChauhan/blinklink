@@ -2,36 +2,67 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-const AddLinks = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDiscord,
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faPinterest,
+  faSnapchat,
+  faSpotify,
+  faTelegram,
+  faThreads,
+  faWhatsapp,
+  faXTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import { ReactSortable } from "react-sortablejs";
+
+import { faEnvelope, faTrashCan } from "@fortawesome/free-regular-svg-icons";
+
+const AddLinks = ({ page }) => {
+  const email = page.email;
   const [link, setLink] = useState(false);
   const [header, setHeader] = useState(false);
   const [social, setSocial] = useState(false);
+  const [links, setLinks] = useState(page.links);
+  const [socialLinks, setSocialLinks] = useState(page.buttons);
+  const [linkTitle, setLinkTitle] = useState("");
+  const [linkUrl, setLinkUrl] = useState("");
+  const [headerTitle, setHeaderTitle] = useState("");
+  const [change, setChange] = useState(false);
+  const [error, setError] = useState("");
 
-  function addLink() {
-    if (link === true) {
-      setLink(false);
-    } else {
-      setLink(true);
-    }
-    setHeader(false);
-    setSocial(false);
+  async function addLink() {
+    setChange(true);
+    setLinks((prev) => {
+      return [
+        ...prev,
+        {
+          key: Date.now().toString(),
+          title: "",
+          url: "",
+          type: "link",
+        },
+      ];
+    });
+    console.log(links);
   }
-  function addLinkRemove() {
-    setLink(false);
-    // setLink2(true);
-  }
-  function addHeader() {
-    if (header === true) {
-      setHeader(false);
-    } else {
-      setHeader(true);
-    }
-    setLink(false);
-    setSocial(false);
-  }
-  function addHeaderRemove() {
-    setHeader(false);
-    // setLink(true);
+
+  async function addHeader() {
+    setChange(true);
+    setLinks((prev) => {
+      return [
+        ...prev,
+        {
+          key: Date.now().toString(),
+          title: "",
+          type: "header",
+        },
+      ];
+    });
   }
   function addSocial() {
     if (social === true) {
@@ -42,9 +73,86 @@ const AddLinks = () => {
     setLink(false);
     setHeader(false);
   }
-  function addSocialRemove() {
+  function onChange(e) {
+    setSocialLinks((prev) => {
+      const existingIndex = prev.findIndex(
+        (item) => item.key === e.target.name
+      );
+      return prev.map((item, index) => {
+        if (index === existingIndex) {
+          return {
+            ...item,
+            URL: e.target.value,
+          };
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+    });
+  }
+  async function addSocialRemove() {
+    console.log(socialLinks);
+    try {
+      const response = await fetch("/api/socials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          socialLinks,
+        }),
+      });
+      if (!response.ok) {
+        setError(response.statusText);
+        return;
+      }
+      setError("");
+    } catch (error) {
+      setError(error);
+    }
     setSocial(false);
-    // setLink(true);
+  }
+  function removeLink(linkKeyToRemove) {
+    setChange(true);
+
+    setLinks((prevLinks) =>
+      [...prevLinks].filter((link) => link.key !== linkKeyToRemove)
+    );
+  }
+  function handleLinkChange(keyOfLinkToChange, prop, ev) {
+    setChange(true);
+
+    setLinks((prev) => {
+      const newLinks = [...prev];
+      newLinks.forEach((link) => {
+        if (link.key === keyOfLinkToChange) {
+          link[prop] = ev.target.value;
+        }
+      });
+      return [...prev];
+    });
+  }
+
+  async function saveLinks() {
+    try {
+      const response = await fetch("/api/links", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          links,
+        }),
+      });
+      if (!response.ok) {
+        setError(response.statusText);
+        return;
+      }
+      setError("");
+      setChange(false);
+    } catch (error) {
+      setError(error);
+    }
   }
   return (
     <>
@@ -75,13 +183,22 @@ const AddLinks = () => {
             <input
               type="text"
               placeholder="Title"
+              value={linkTitle}
+              onChange={(e) => {
+                setLinkTitle(e.target.value);
+              }}
               className="bg-zinc-200 mt-3 mb-2 p-3 rounded-2xl w-full outline-none focus:outline-[#4c956c] text-base"
             />
             <input
-              type="text"
+              type="url"
               placeholder="URL"
+              value={linkUrl}
+              onChange={(e) => {
+                setLinkUrl(e.target.value);
+              }}
               className="bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-full outline-none focus:outline-[#4c956c] text-base"
             />
+            {error && <span className="text-sm text-red-500">{error}</span>}
             <button
               onClick={addLinkRemove}
               className="w-3/4 bg-lime-300 rounded-full my-1 p-3 hover:bg-lime-400 hover:ease-in hover:duration-200 text-sm  flex place-content-center items-center"
@@ -97,6 +214,10 @@ const AddLinks = () => {
             <input
               type="text"
               placeholder="Header"
+              value={headerTitle}
+              onChange={(e) => {
+                setHeaderTitle(e.target.value);
+              }}
               className="bg-zinc-200 mt-3 mb-2 p-3 rounded-2xl w-full outline-none focus:outline-[#4c956c] text-base"
             />
             <button
@@ -109,25 +230,311 @@ const AddLinks = () => {
           </div>
         )}
         {social && (
-          <div className=" text-lg bg-white mt-8 pt-8 pb-5 mx-16 px-8 rounded-xl flex flex-col shadow-md items-center">
+          <div className="text-sm bg-white mt-8 pt-8 pb-5 mx-16 px-8 rounded-xl flex flex-col shadow-md items-center">
             <p className="text-lg font-bold w-full">Enter Social Icon</p>
-            <select className="bg-zinc-200 mt-3 mb-2 p-3 rounded-2xl w-full outline-none focus:outline-[#4c956c] text-base">
-              <option>Instagram</option>
-            </select>
-            <input
-              type="text"
-              placeholder="URL"
-              className="bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-full outline-none focus:outline-[#4c956c] text-base"
-            />
+
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Instagram
+              </p>
+              <input
+                type="text"
+                placeholder="Instagram URL"
+                name="instagram"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faThreads}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Threads
+              </p>
+              <input
+                type="text"
+                placeholder="Threads URL"
+                name="threads"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faFacebook}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Facebook
+              </p>
+              <input
+                type="text"
+                placeholder="Facebook URL"
+                name="facebook"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Email
+              </p>
+              <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faYoutube}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                YouTube
+              </p>
+              <input
+                type="text"
+                placeholder="Youtube URL"
+                name="youtube"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faXTwitter}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                X (formerly Twitter)
+              </p>
+              <input
+                type="text"
+                placeholder="X URL"
+                name="X"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faWhatsapp}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                WhatsApp
+              </p>
+              <input
+                type="text"
+                placeholder="WhatsApp URL"
+                name="whatsapp"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faSnapchat}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Snapchat
+              </p>
+              <input
+                type="text"
+                placeholder="Snapchat URL"
+                name="snapchat"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faDiscord}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Discord
+              </p>
+              <input
+                type="text"
+                placeholder="Discord URL"
+                name="discord"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faGithub}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                GitHub
+              </p>
+              <input
+                type="text"
+                placeholder="GitHub URL"
+                name="github"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                LinkedIn
+              </p>
+              <input
+                type="text"
+                placeholder="LinkedIn URL"
+                name="linkedin"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faPinterest}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Pinterest
+              </p>
+              <input
+                type="text"
+                placeholder="Pinterest URL"
+                name="pinterest"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faSpotify}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Spotify
+              </p>
+              <input
+                type="text"
+                placeholder="Spotify URL"
+                name="spotify"
+                onChange={onChange}
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+              />
+            </div>
+            <div className="flex place-content-between w-full items-center">
+              <p className="px-2 flex items-center">
+                <FontAwesomeIcon
+                  icon={faTelegram}
+                  className="w-7 h-7 pr-2 text-neutral-700"
+                />
+                Telegram
+              </p>
+              <input
+                type="text"
+                placeholder="Telegram URL"
+                name="telegram"
+                onChange={onChange}
+                className=" bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
+              />
+            </div>
             <button
               onClick={addSocialRemove}
               className="w-3/4 bg-lime-300 rounded-full my-1 p-3 hover:bg-lime-400 hover:ease-in hover:duration-200 xl:text-sm text-xs flex place-content-center items-center"
             >
               {/* <span className="material-symbols-outlined xl:pr-2">add</span> */}
-              Add Social Icon
+              Save Social Icons
             </button>
           </div>
         )}
+        <div className="mt-5 w-11/12 m-auto p-2">
+          <ReactSortable
+            handle={".handle"}
+            list={links}
+            setList={setLinks}
+            onEnd={() => setChange(true)}
+          >
+            {links.map((link) => (
+              <div
+                key={link.key}
+                // className="mt-8 flex flex-col place-content-center"
+                className="py-7 px-5 my-4 bg-white flex rounded-2xl shadow-lg items-center"
+              >
+                <div className="handle">
+                  {/* <FontAwesomeIcon
+                    className="text-neural-600 mr-2 cursor-ns-resize"
+                    icon={faEllipsis}
+                  /> */}
+                  <span className="material-symbols-outlined my-auto pr-2">
+                    drag_indicator
+                  </span>
+                </div>
+
+                <div
+                  // className="bg-white"
+                  className="flex flex-col w-11/12 place-content-center px-4 h-full"
+                >
+                  <div>
+                    <input
+                      value={link.title}
+                      onChange={(e) => handleLinkChange(link.key, "title", e)}
+                      type="text"
+                      placeholder="title"
+                      className="bg-transparent outline-none placeholder:text-black w-full"
+                    />
+                  </div>
+                  {link.type === "link" && (
+                    <div>
+                      <input
+                        value={link.url}
+                        onChange={(ev) => handleLinkChange(link.key, "url", ev)}
+                        type="text"
+                        placeholder="url"
+                        className="bg-transparent outline-none placeholder:text-black w-full"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <div>
+                    <button onClick={() => removeLink(link.key)} type="button">
+                      <FontAwesomeIcon
+                        icon={faTrashCan}
+                        className="text-neutral-700 h-5"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ReactSortable>
+        </div>
+        <button
+          onClick={saveLinks}
+          disabled={change ? false : true}
+          className="disabled:bg-neutral-300 w-1/4 bg-lime-300 rounded-full my-1 mx-1 p-3 hover:bg-lime-400 hover:ease-in hover:duration-200 flex place-content-center items-center"
+        >
+          Save Links
+        </button>
       </div>
     </>
   );

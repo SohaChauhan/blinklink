@@ -12,6 +12,18 @@ const Profile = ({ page, user }) => {
   const [changebio, setChangebio] = useState(false);
   const [bgcolor, setBgcolor] = useState(page.bg_color);
   const [changebgcolor, setChangebgcolor] = useState(false);
+  const [fontcolor, setFontcolor] = useState(page.font_color);
+  const [changefontcolor, setChangefontcolor] = useState(false);
+  const [buttonbgcolor, setButtonbgcolor] = useState(page.button_color);
+  const [changebuttonbgcolor, setChangebuttonbgcolor] = useState(false);
+  const [buttonfontcolor, setButtonfontcolor] = useState(
+    page.button_font_color
+  );
+  const [changebuttonfontcolor, setChangebuttonfontcolor] = useState(false);
+  const [avatarbordercolor, setAvatarbordercolor] = useState(
+    page.avatar_border_color
+  );
+  const [changeavatarbordercolor, setChangeavatarbordercolor] = useState(false);
   const [changeImage, setChangeImage] = useState(false);
   const [error, setError] = useState("");
   const email = page.email;
@@ -32,6 +44,10 @@ const Profile = ({ page, user }) => {
           username,
           bio,
           bgcolor,
+          fontcolor,
+          buttonbgcolor,
+          buttonfontcolor,
+          avatarbordercolor,
           image,
         }),
       });
@@ -64,6 +80,26 @@ const Profile = ({ page, user }) => {
     setChange(true);
     setChangebgcolor(true);
     setBgcolor(e.target.value);
+  }
+  function changeFontcolor(e) {
+    setChange(true);
+    setChangefontcolor(true);
+    setFontcolor(e.target.value);
+  }
+  function changeButtonbgcolor(e) {
+    setChange(true);
+    setChangebuttonbgcolor(true);
+    setButtonbgcolor(e.target.value);
+  }
+  function changeButtonfontcolor(e) {
+    setChange(true);
+    setChangebuttonfontcolor(true);
+    setButtonfontcolor(e.target.value);
+  }
+  function changeAvatarbordercolor(e) {
+    setChange(true);
+    setChangeavatarbordercolor(true);
+    setAvatarbordercolor(e.target.value);
   }
   function uploadImage() {
     // setChange(true);
@@ -146,7 +182,7 @@ const Profile = ({ page, user }) => {
                   onClick={uploadImage}
                   className="bg-[#4c956c] text-white rounded-full p-3 hover:bg-[#397051] hover:ease-in hover:duration-200 text-sm"
                 >
-                  Change Image
+                  Change Avatar
                 </button>
                 {changeImage && (
                   <div className="rounded absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[26%] h-48 p-4 shadow-2xl bg-white z-50 text-sm flex flex-col items-center place-content-center">
@@ -200,10 +236,99 @@ const Profile = ({ page, user }) => {
                 <input
                   type="text"
                   value={bgcolor}
+                  onChange={changeBgcolor}
                   className=" px-4 pt-5 pb-2 bg-neutral-100 rounded-2xl h-full w-full border-none outline-none focus:outline-lime-400 text-sm"
                 />
                 <label className=" text-gray-600 absolute left-4 top-1/2 translate-y-[-110%] text-sm pointer-events-none transition-all duration-100 ease-in">
                   background color
+                </label>
+              </div>
+            </div>
+            <div className="flex place-content-around mx-5 mt-5">
+              <div className="w-[100px] flex place-content-center">
+                <input
+                  type="color"
+                  name="fontcolor"
+                  value={fontcolor}
+                  onChange={changeFontcolor}
+                  className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
+                />
+              </div>
+              <div className="h-[60px] relative w-1/2">
+                <input
+                  type="text"
+                  value={fontcolor}
+                  onChange={changeFontcolor}
+                  className=" px-4 pt-5 pb-2 bg-neutral-100 rounded-2xl h-full w-full border-none outline-none focus:outline-lime-400 text-sm"
+                />
+                <label className=" text-gray-600 absolute left-4 top-1/2 translate-y-[-110%] text-sm pointer-events-none transition-all duration-100 ease-in">
+                  font color
+                </label>
+              </div>
+            </div>
+            <div className="flex place-content-around mx-5 mt-5">
+              <div className="w-[100px] flex place-content-center">
+                <input
+                  type="color"
+                  name="buttonbgcolor"
+                  value={buttonbgcolor}
+                  onChange={changeButtonbgcolor}
+                  className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
+                />
+              </div>
+              <div className="h-[60px] relative w-1/2">
+                <input
+                  type="text"
+                  value={buttonbgcolor}
+                  onChange={changeButtonbgcolor}
+                  className=" px-4 pt-5 pb-2 bg-neutral-100 rounded-2xl h-full w-full border-none outline-none focus:outline-lime-400 text-sm"
+                />
+                <label className=" text-gray-600 absolute left-4 top-1/2 translate-y-[-110%] text-sm pointer-events-none transition-all duration-100 ease-in">
+                  button background color
+                </label>
+              </div>
+            </div>
+            <div className="flex place-content-around mx-5 mt-5">
+              <div className="w-[100px] flex place-content-center">
+                <input
+                  type="color"
+                  name="buttonfontcolor"
+                  value={buttonfontcolor}
+                  onChange={changeButtonfontcolor}
+                  className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
+                />
+              </div>
+              <div className="h-[60px] relative w-1/2">
+                <input
+                  type="text"
+                  value={buttonfontcolor}
+                  onChange={changeButtonfontcolor}
+                  className=" px-4 pt-5 pb-2 bg-neutral-100 rounded-2xl h-full w-full border-none outline-none focus:outline-lime-400 text-sm"
+                />
+                <label className=" text-gray-600 absolute left-4 top-1/2 translate-y-[-110%] text-sm pointer-events-none transition-all duration-100 ease-in">
+                  button font color
+                </label>
+              </div>
+            </div>
+            <div className="flex place-content-around mx-5 mt-5">
+              <div className="w-[100px] flex place-content-center">
+                <input
+                  type="color"
+                  name="avatarbordercolor"
+                  value={avatarbordercolor}
+                  onChange={changeAvatarbordercolor}
+                  className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
+                />
+              </div>
+              <div className="h-[60px] relative w-1/2">
+                <input
+                  type="text"
+                  value={avatarbordercolor}
+                  onChange={changeAvatarbordercolor}
+                  className=" px-4 pt-5 pb-2 bg-neutral-100 rounded-2xl h-full w-full border-none outline-none focus:outline-lime-400 text-sm"
+                />
+                <label className=" text-gray-600 absolute left-4 top-1/2 translate-y-[-110%] text-sm pointer-events-none transition-all duration-100 ease-in">
+                  Avatar border color
                 </label>
               </div>
             </div>

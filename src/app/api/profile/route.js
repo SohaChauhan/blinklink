@@ -6,7 +6,17 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     await connectDb();
-    const { email, username, bio, bgcolor, image } = await req.json();
+    const {
+      email,
+      username,
+      bio,
+      bgcolor,
+      fontcolor,
+      buttonbgcolor,
+      buttonfontcolor,
+      avatarbordercolor,
+      image,
+    } = await req.json();
 
     const user = await UserModel.findOne({ email });
     if (!user) {
@@ -25,7 +35,15 @@ export async function POST(req) {
     await UserModel.findOneAndUpdate({ email }, { username, image });
     await PageModel.findOneAndUpdate(
       { email },
-      { username, bio, bg_color: bgcolor }
+      {
+        username,
+        bio,
+        bg_color: bgcolor,
+        button_color: buttonbgcolor,
+        button_font_color: buttonfontcolor,
+        font_color: fontcolor,
+        avatar_border_color: avatarbordercolor,
+      }
     );
     return NextResponse.json(
       { message: "update successfull" },

@@ -37,6 +37,23 @@ export default function Account() {
     router.replace("/login");
     console.log("Logged Out");
   };
+  async function deleteAccount(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/delete_account", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: session.user.email,
+        }),
+      });
+      if (!response.ok) {
+        return;
+      }
+      router.push("/signup");
+    } catch (error) {}
+  }
   return (
     <>
       {session && (
@@ -97,6 +114,12 @@ export default function Account() {
               </div>
             )}
           </div>
+          <button
+            onClick={deleteAccount}
+            className="bg-red-500 py-5 px-10 mt-5 text-white rounded-full hover:bg-red-600"
+          >
+            Delete My Account
+          </button>
         </div>
       )}
     </>
