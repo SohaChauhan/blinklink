@@ -21,7 +21,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 export const buttonsIcons = {
-  email: faEnvelope,
+  "e-mail": faEnvelope,
   instagram: faInstagram,
   facebook: faFacebook,
   discord: faDiscord,
@@ -68,8 +68,8 @@ const page = async ({ params }) => {
         </div>
 
         <p className="my-2 font-bold text-base ">@{page.username}</p>
-        <p className="mb-5 text-sm w-1/4 text-center ">{page.bio}</p>
-        <div className="flex mb-3">
+        <p className="my-3 text-sm w-1/4 text-center ">{page.bio}</p>
+        <div className="flex my-1">
           {page.buttons.map(
             (button) =>
               button.URL != "" && (
@@ -77,7 +77,7 @@ const page = async ({ params }) => {
                   <a href={button.URL}>
                     <FontAwesomeIcon
                       icon={buttonsIcons[button.label]}
-                      className="w-9 h-9 pr-2"
+                      className="w-9 h-9 px-1"
                       style={{ color: font_color }}
                     />
                     {/* {button.icons} */}
@@ -88,13 +88,13 @@ const page = async ({ params }) => {
         </div>
         {page.links.map((link) => (
           <div
-            className="w-full flex items-center place-content-center"
+            className="w-full flex items-center place-content-center text-[17px]"
             key={link.key}
           >
             {link.type === "link" && (
               <a
                 href={link.url}
-                className="w-[45%] h-[57px] rounded-full mt-2 flex items-center place-content-center"
+                className="w-[45%] h-[57px] rounded-full mt-2 mb-1 flex items-center place-content-center"
                 style={{
                   backgroundColor: button_color,
                   color: button_font_color,
@@ -104,7 +104,7 @@ const page = async ({ params }) => {
               </a>
             )}
             {link.type === "header" && (
-              <p className="mt-2 text-lg">{link.title}</p>
+              <p className="mt-5 mb-2 text-lg">{link.title}</p>
             )}
           </div>
         ))}

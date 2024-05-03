@@ -134,6 +134,13 @@ export default function Login() {
             <p>Log in with Google</p>
           </button>
         </div>
+        <div className="lg:w-1/2 w-full h-full">
+          <img
+            className="w-[85%] mx-auto my-9 hover:w-[90%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+            src="/g-6.png"
+            alt="BlinkLink"
+          />
+        </div>
       </section>
     </>
   );

@@ -72,11 +72,24 @@ export default function Home() {
               </button>
             </div>
           </div>
+          <div className="lg:visible collapse rounded-r-2xl lg:w-5/12 ">
+            <img
+              className="w-[95%] mx-auto my-4 hover:w-[100%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src="/g-3.png"
+              alt="BlinkLink"
+            />
+          </div>
         </div>
       </section>
       <section className="h-[780px] flex items-center ">
         <div className=" rounded-[60px] h-[650px]  mx-6 flex bg-lime-300 w-full shadow-[0px_1px_25px_10px_rgba(0,0,0,0.15)]">
-          <div className="lg:visible collapse rounded-l-2xl lg:w-5/12 "></div>
+          <div className="lg:visible collapse rounded-l-2xl lg:w-5/12 ">
+            <img
+              className="w-10/12 mx-auto my-16 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src="/g-2.png"
+              alt="BlinkLink"
+            />
+          </div>
           <div className="rounded-[50px] h-full lg:w-7/12 w-full flex flex-col items-center place-content-center bg-white">
             <div className="w-8/12 ">
               <p
@@ -100,7 +113,13 @@ export default function Home() {
       </section>
       <section className="flex h-[780px] items-center bg-purple-600 ">
         <div className=" rounded-[60px] h-[650px] mx-6 flex items-center place-content-center bg-white w-full shadow-inset">
-          <div className="rounded-l-2xl h-full w-1/3 lg:visible collapse"></div>
+          <div className="rounded-l-2xl h-full w-1/3 lg:visible collapse">
+            <img
+              className="w-[80%] mx-auto my-28 hover:w-[85%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src="/g-5.png"
+              alt="BlinkLink"
+            />
+          </div>
           <div className=" h-full lg:w-1/3 w-2/3 flex flex-col place-content-center">
             <p
               className={`font-extrabold sm:text-7xl text-6xl ${myFont.className}`}
@@ -118,7 +137,13 @@ export default function Home() {
               <Link href="/signup">Get Started</Link>
             </button>
           </div>
-          <div className="rounded-r-2xl h-full w-1/3 lg:visible collapse"></div>
+          <div className="rounded-r-2xl h-full w-1/3 lg:visible collapse">
+            <img
+              className="w-[95%] mx-auto my-20 hover:w-[100%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src="/g-4.png"
+              alt="BlinkLink"
+            />
+          </div>
         </div>
       </section>
       <section className="h-[780px] flex items-center ">

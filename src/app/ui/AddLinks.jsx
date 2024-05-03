@@ -246,6 +246,7 @@ const AddLinks = ({ page }) => {
                 placeholder="Instagram URL"
                 name="instagram"
                 onChange={onChange}
+                value={socialLinks[0].URL}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
             </div>
@@ -261,6 +262,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="Threads URL"
                 name="threads"
+                value={socialLinks[1].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
@@ -278,6 +280,7 @@ const AddLinks = ({ page }) => {
                 placeholder="Facebook URL"
                 name="facebook"
                 onChange={onChange}
+                value={socialLinks[2].URL}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
             </div>
@@ -293,6 +296,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="Email"
                 name="email"
+                value={socialLinks[3].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
@@ -308,6 +312,7 @@ const AddLinks = ({ page }) => {
               <input
                 type="text"
                 placeholder="Youtube URL"
+                value={socialLinks[4].URL}
                 name="youtube"
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
@@ -325,6 +330,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="X URL"
                 name="X"
+                value={socialLinks[5].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
@@ -341,6 +347,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="WhatsApp URL"
                 name="whatsapp"
+                value={socialLinks[6].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
               />
@@ -357,6 +364,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="Snapchat URL"
                 name="snapchat"
+                value={socialLinks[7].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
               />
@@ -372,6 +380,7 @@ const AddLinks = ({ page }) => {
               <input
                 type="text"
                 placeholder="Discord URL"
+                value={socialLinks[8].URL}
                 name="discord"
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
@@ -390,6 +399,7 @@ const AddLinks = ({ page }) => {
                 placeholder="GitHub URL"
                 name="github"
                 onChange={onChange}
+                value={socialLinks[9].URL}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
               />
             </div>
@@ -406,6 +416,7 @@ const AddLinks = ({ page }) => {
                 placeholder="LinkedIn URL"
                 name="linkedin"
                 onChange={onChange}
+                value={socialLinks[10].URL}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
               />
             </div>
@@ -420,6 +431,7 @@ const AddLinks = ({ page }) => {
               <input
                 type="text"
                 placeholder="Pinterest URL"
+                value={socialLinks[11].URL}
                 name="pinterest"
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
@@ -437,6 +449,7 @@ const AddLinks = ({ page }) => {
                 type="text"
                 placeholder="Spotify URL"
                 name="spotify"
+                value={socialLinks[12].URL}
                 onChange={onChange}
                 className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
               />
@@ -452,6 +465,7 @@ const AddLinks = ({ page }) => {
               <input
                 type="text"
                 placeholder="Telegram URL"
+                value={socialLinks[13].URL}
                 name="telegram"
                 onChange={onChange}
                 className=" bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c]"
