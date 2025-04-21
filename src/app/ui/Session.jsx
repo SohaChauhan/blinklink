@@ -24,7 +24,7 @@ const Session = ({ user }) => {
             </div>
           </button>
           {showPopover && (
-            <div className=" bg-white absolute right-0 top-[77px] shadow-xl rounded-2xl p-3 text-sm border w-2/12">
+            <div className=" bg-white absolute right-0 top-[77px] shadow-xl rounded-2xl p-3 text-sm border w-[200px]">
               <button className=" flex items-center py-3 px-5 w-full rounded-xl mr-3 hover:ease-in hover:duration-200 hover:bg-neutral-200">
                 <Link href="/admin/account">My Account</Link>
               </button>
