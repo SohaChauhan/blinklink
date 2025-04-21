@@ -4,10 +4,13 @@ import { signIn } from "next-auth/react";
 import { useEffect } from "react";
 import Link from "next/link";
 import "./signup.css";
+import Image from "next/image";
 import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
-
+import g7 from "/public/g-7.png";
+import logo from "/public/logo-full.png";
+import glogo from "/public/google.png";
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 
 export default function Signup() {
@@ -79,9 +82,9 @@ export default function Signup() {
       <Suspense>
         <div className="w-fit">
           <Link href="/">
-            <img
+            <Image
               className="m-5 w-[200px] min-w-[200px]"
-              src="/logo-full.png"
+              src={logo}
               alt="BlinkLink"
             />
           </Link>
@@ -89,10 +92,10 @@ export default function Signup() {
         <section
           className={`bg-purple-600 h-[645px] lg:mx-20 mx-10 shadow-xl flex rounded-2xl ${poppins.className}`}
         >
-          <div className="w-1/2 h-full lg:visible collapse rounded-l-2xl ">
-            <img
-              className="w-[85%] mx-auto my-5 hover:w-[90%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-              src="/g-7.png"
+          <div className="w-1/2 h-full lg:flex lg:items-center hidden rounded-l-2xl ">
+            <Image
+              className="lg:w-[85%] h-fit mx-auto my-5 hover:w-[90%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src={g7}
               alt="BlinkLink"
             />
           </div>
@@ -163,7 +166,7 @@ export default function Signup() {
               onClick={handleSigninwithGoogle}
               className="bg-white border border-neutral-200 hover:bg-neutral-200 hover:ease-in hover:duration-200 flex items-center  place-content-center w-2/3 h-12 rounded-3xl text-[0.95rem]"
             >
-              <img src="/google.png" className="w-6 mr-3" />
+              <Image src={glogo} className="w-6 mr-3" alt="google" />
               <p>Sign up with Google</p>
             </button>
           </div>

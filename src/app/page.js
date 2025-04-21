@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import localFont from "next/font/local";
+import g1 from "/public/g-1.png";
+import g2 from "/public/g-2.png";
+import g3 from "/public/g-3.png";
+import g4 from "/public/g-4.png";
+import g5 from "/public/g-5.png";
 
+import logoWhite from "/public/logo-full-white.png";
+import logo from "/public/logo-full.png";
 const myFont = localFont({ src: "./fonts/BauhausStd-Demi.woff2" });
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 export default function Home() {
@@ -11,9 +18,9 @@ export default function Home() {
         className={`flex rounded-xl items-center mx-3 place-content-between`}
       >
         <Link href="/">
-          <img
+          <Image
             className="m-5 min-w-[250px] w-[250px] "
-            src="/logo-full.png"
+            src={logo}
             alt="BlinkLink"
           />
         </Link>
@@ -29,10 +36,10 @@ export default function Home() {
         </div>
       </nav>
       <div className="rounded-[60px] h-[650px] mx-6 flex bg-purple-600 shadow-[0px_1px_25px_10px_rgba(0,0,0,0.15)]">
-        <div className="lg:visible collapse rounded-l-2xl h-full lg:w-5/12">
-          <img
-            className="w-10/12 mx-auto  my-32 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-            src="/g-1.png"
+        <div className="lg:flex lg:items-center hidden rounded-l-2xl h-full lg:w-5/12">
+          <Image
+            className="lg:w-10/12 mx-auto my-32 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+            src={g1}
             alt="BlinkLink"
           />
         </div>
@@ -72,10 +79,10 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="lg:visible collapse rounded-r-2xl lg:w-5/12 ">
-            <img
-              className="w-[95%] mx-auto my-4 hover:w-[100%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-              src="/g-3.png"
+          <div className="lg:flex lg:items-center hidden rounded-r-2xl lg:w-5/12 ">
+            <Image
+              className="lg:w-[95%] lg:h-fit mx-auto my-4 hover:w-[100%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src={g3}
               alt="BlinkLink"
             />
           </div>
@@ -83,10 +90,10 @@ export default function Home() {
       </section>
       <section className="h-[780px] flex items-center ">
         <div className=" rounded-[60px] h-[650px]  mx-6 flex bg-lime-300 w-full shadow-[0px_1px_25px_10px_rgba(0,0,0,0.15)]">
-          <div className="lg:visible collapse rounded-l-2xl lg:w-5/12 ">
-            <img
-              className="w-10/12 mx-auto my-16 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-              src="/g-2.png"
+          <div className="lg:flex hidden lg:items-center rounded-l-2xl lg:w-5/12 ">
+            <Image
+              className="lg:w-10/12 mx-auto my-16 hover:w-[86%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+              src={g2}
               alt="BlinkLink"
             />
           </div>
@@ -114,9 +121,9 @@ export default function Home() {
       <section className="flex h-[780px] items-center bg-purple-600 ">
         <div className=" rounded-[60px] h-[650px] mx-6 flex items-center place-content-center bg-white w-full shadow-inset">
           <div className="rounded-l-2xl h-full w-1/3 lg:visible collapse">
-            <img
+            <Image
               className="w-[80%] mx-auto my-28 hover:w-[85%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-              src="/g-5.png"
+              src={g5}
               alt="BlinkLink"
             />
           </div>
@@ -138,9 +145,9 @@ export default function Home() {
             </button>
           </div>
           <div className="rounded-r-2xl h-full w-1/3 lg:visible collapse">
-            <img
+            <Image
               className="w-[95%] mx-auto my-20 hover:w-[100%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-              src="/g-4.png"
+              src={g4}
               alt="BlinkLink"
             />
           </div>
@@ -189,7 +196,7 @@ export default function Home() {
         <div className="w-full h-fit">
           <Image
             className="mx-5 my-5"
-            src="/logo-full-white.png"
+            src={logoWhite}
             width={250}
             height={35}
             alt="Picture of the author"

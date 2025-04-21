@@ -59,7 +59,7 @@ export default function Account() {
       {session && (
         <div className="w-full flex items-center place-content-center mt-20 flex-col">
           <p className="text-3xl">My Account</p>
-          <div className="w-2/5 py-3">
+          <div className="lg:w-2/5 w-4/5 py-3">
             <p>Basic Information</p>
             <div className="bg-white px-5 py-3 shadow-sm rounded-lg my-2">
               <div className="pb-2">

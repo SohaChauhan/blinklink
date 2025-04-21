@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
+import { GripVertical } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDiscord,
@@ -156,27 +157,27 @@ const AddLinks = ({ page }) => {
   }
   return (
     <>
-      <div className="w-full place-content-center flex mt-5">
+      <div className="w-full place-content-center flex mt-5 md:flex-row flex-col justify-center items-center">
         <button
           onClick={addLink}
-          className="w-1/3 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200 max-[536px]:text-xs text-base"
+          className="md:w-1/3 w-1/2 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200 max-[536px]:text-xs text-base"
         >
           Add Link
         </button>
         <button
           onClick={addHeader}
-          className="w-1/3 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200  max-[536px]:text-xs text-base"
+          className="md:w-1/3 w-1/2 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200  max-[536px]:text-xs text-base"
         >
           Add Header
         </button>
         <button
           onClick={addSocial}
-          className="w-1/3 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200 max-[536px]:text-xs text-base"
+          className="md:w-1/3  w-1/2 bg-purple-600 rounded-full my-1 mx-1 p-3 text-white hover:bg-purple-700 hover:ease-in hover:duration-200 max-[536px]:text-xs text-base"
         >
           Add Social Icon
         </button>
       </div>
-      <div className="flex flex-col pr-2 w-full">
+      <div className="flex flex-col items-center pr-2 w-full">
         {link && (
           <div className=" text-lg bg-white mt-8 pt-8 pb-5 xl:mx-16 md:mx-4 mx-16 px-8 rounded-xl flex flex-col shadow-md items-center">
             <p className="text-lg font-bold w-full">Enter URL</p>
@@ -230,7 +231,7 @@ const AddLinks = ({ page }) => {
           </div>
         )}
         {social && (
-          <div className="text-sm bg-white mt-8 pt-8 pb-5 mx-16 px-8 rounded-xl flex flex-col shadow-md items-center">
+          <div className="text-sm bg-white mt-8 pt-8 pb-5 mx-16 px-8 rounded-xl flex flex-col shadow-md items-center w-full">
             <p className="text-lg font-bold w-full">Enter Social Icon</p>
 
             <div className="flex place-content-between w-full items-center">
@@ -247,7 +248,7 @@ const AddLinks = ({ page }) => {
                 name="instagram"
                 onChange={onChange}
                 value={socialLinks[0].URL}
-                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3 outline-none focus:outline-[#4c956c] "
+                className="px-3 bg-zinc-200 mb-3 mt-1 p-3 rounded-2xl w-2/3  outline-none focus:outline-[#4c956c] "
               />
             </div>
             <div className="flex place-content-between w-full items-center">
@@ -498,9 +499,7 @@ const AddLinks = ({ page }) => {
                     className="text-neural-600 mr-2 cursor-ns-resize"
                     icon={faEllipsis}
                   /> */}
-                  <span className="material-symbols-outlined my-auto pr-2">
-                    drag_indicator
-                  </span>
+                  <GripVertical className="cursor-pointer"></GripVertical>
                 </div>
 
                 <div
@@ -545,7 +544,7 @@ const AddLinks = ({ page }) => {
         <button
           onClick={saveLinks}
           disabled={change ? false : true}
-          className="disabled:bg-neutral-300 w-1/4 bg-lime-300 rounded-full my-1 mx-1 p-3 hover:bg-lime-400 hover:ease-in hover:duration-200 flex place-content-center items-center"
+          className="disabled:bg-neutral-300 xl:w-1/4 w-1/2 bg-lime-300 rounded-full my-1 mx-1 p-3 hover:bg-lime-400 hover:ease-in hover:duration-200 flex place-content-center items-center"
         >
           Save Links
         </button>

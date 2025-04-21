@@ -3,6 +3,7 @@ import connectDb from "../../../utils/connectDB";
 import PageModel from "../../../models/PageModel";
 import UserModel from "../../../models/UserModel";
 import Image from "next/image";
+import logo from "/public/logo-removebg-preview.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDiscord,
@@ -51,7 +52,7 @@ const page = async ({ params }) => {
   return (
     <>
       <div
-        className={`h-screen w-full flex flex-col items-center pt-16`}
+        className={`min-h-screen w-full flex flex-col items-center pt-16`}
         style={{ backgroundColor: bg_color, color: font_color }}
       >
         <div
@@ -68,7 +69,9 @@ const page = async ({ params }) => {
         </div>
 
         <p className="my-2 font-bold text-base ">@{page.username}</p>
-        <p className="my-3 text-sm w-1/4 text-center ">{page.bio}</p>
+        <p className="my-3 text-sm xl:w-1/4 md:1/2 w-11/12 text-center ">
+          {page.bio}
+        </p>
         <div className="flex my-1">
           {page.buttons.map(
             (button) =>
@@ -110,17 +113,11 @@ const page = async ({ params }) => {
         ))}
         <a
           href="https://blinklink-smoky.vercel.app"
-          className="bg-white text-black flex w-1/5 h-12 rounded-full bottom-5 absolute items-center place-content-center"
+          className="bg-white text-black flex xl:w-1/5 w-1/2 h-12 rounded-full bottom-5 absolute items-center place-content-center"
         >
-          <button className="flex ">
-            <img
-              src="/logo-removebg-preview.png"
-              alt="blinklink"
-              className="h-6 pr-3"
-            />
+          <Image src={logo} alt="blinklink" className="h-6 pr-3 w-fit" />
 
-            <p>Create your own BlinkLink</p>
-          </button>
+          <p>Create your own BlinkLink</p>
         </a>
       </div>
     </>

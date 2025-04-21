@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.19",
     "bcryptjs": "^2.4.3",
     "clone-deep": "^4.0.1",
+    "lucide-react": "^0.503.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
     "next": "14.2.1",

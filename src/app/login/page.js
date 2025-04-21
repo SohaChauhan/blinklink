@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import "./login.css";
 import localFont from "next/font/local";
-
+import logo from "/public/logo-full.png";
+import g6 from "/public/g-6.png";
+import glogo from "/public/google.png";
 const poppins = localFont({ src: "./fonts/Poppins-Regular.woff2" });
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -24,7 +27,7 @@ export default function Login() {
   };
   const handleSigninwithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
+      callbackUrl: "http://blinklink-smoky.vercel.app/admin",
     });
   };
 
@@ -60,9 +63,9 @@ export default function Login() {
     <>
       <div className="w-fit">
         <Link href="/">
-          <img
+          <Image
             className="m-5 w-[200px] min-w-[200px]"
-            src="/logo-full.png"
+            src={logo}
             alt="BlinkLink"
           />
         </Link>
@@ -130,14 +133,14 @@ export default function Login() {
             onClick={handleSigninwithGoogle}
             className="bg-white border border-neutral-200 hover:bg-neutral-200 hover:ease-in hover:duration-200 flex items-center  place-content-center w-2/3 h-12 rounded-3xl text-[0.95rem]"
           >
-            <img src="/google.png" className="w-6 mr-3" />
+            <Image src={glogo} alt="google" className="w-6 mr-3" />
             <p>Log in with Google</p>
           </button>
         </div>
-        <div className="lg:w-1/2 w-full h-full">
-          <img
-            className="w-[85%] mx-auto my-9 hover:w-[90%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
-            src="/g-6.png"
+        <div className="lg:w-1/2 lg:flex lg:items-center hidden w-full h-full">
+          <Image
+            className="lg:w-[85%] h-fit mx-auto my-9 hover:w-[90%] hover:cursor-pointer hover:ease-in-out hover:duration-300"
+            src={g6}
             alt="BlinkLink"
           />
         </div>
