@@ -71,7 +71,7 @@ export default function Login() {
         </Link>
       </div>
       <section
-        className={`bg-[#4c956c] h-[645px] lg:mx-20 mx-10 shadow-xl flex rounded-2xl ${poppins.className}`}
+        className={`bg-[#4c956c] h-[645px] lg:mx-20 sm:mx-5 mx-3 shadow-xl flex rounded-2xl ${poppins.className}`}
       >
         {/* <div className="w-1/2 h-full lg:visible collapse rounded-l-2xl "></div> */}
 

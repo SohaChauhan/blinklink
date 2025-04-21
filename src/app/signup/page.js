@@ -90,7 +90,7 @@ export default function Signup() {
           </Link>
         </div>
         <section
-          className={`bg-purple-600 h-[645px] lg:mx-20 mx-10 shadow-xl flex rounded-2xl ${poppins.className}`}
+          className={`bg-purple-600 h-[645px] lg:mx-20 sm:mx-5 mx-3 shadow-xl flex rounded-2xl ${poppins.className}`}
         >
           <div className="w-1/2 h-full lg:flex lg:items-center hidden rounded-l-2xl ">
             <Image
