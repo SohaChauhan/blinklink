@@ -21,12 +21,12 @@ export default async function Admin() {
     leanPage._id = leanPage._id.toString();
     const leanUser = cloneDeep(user.toJSON());
     leanUser._id = leanUser._id.toString();
-    const link = "https://blinklink-smoky.vercel.app" + leanUser.username;
+    const link = "https://blinklink-smoky.vercel.app/" + leanUser.username;
     return (
       <>
         <NavBar user={leanUser} />
         <section className="flex xl:flex-row flex-col">
-          <section className="flex h-full flex-col xl:w-1/2 w-full px-8 pt-4 pb-10 border-r">
+          <section className="flex h-full flex-col xl:w-1/2 w-full md:px-8 px-3 pt-4 pb-10 border-r">
             <Profile page={leanPage} user={leanUser}></Profile>
           </section>
           <section className="flex h-full flex-col xl:w-1/2 w-full md:py-4 pb-4 place-content-center px-5">

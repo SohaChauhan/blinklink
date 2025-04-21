@@ -69,7 +69,7 @@ const page = async ({ params }) => {
         </div>
 
         <p className="my-2 font-bold text-base ">@{page.username}</p>
-        <p className="my-3 text-sm xl:w-1/4 md:1/2 w-11/12 text-center ">
+        <p className="my-3 text-sm xl:w-1/4 md:w-1/2 w-11/12 text-center ">
           {page.bio}
         </p>
         <div className="flex my-1">
@@ -97,7 +97,7 @@ const page = async ({ params }) => {
             {link.type === "link" && (
               <a
                 href={link.url}
-                className="w-[45%] h-[57px] rounded-full mt-2 mb-1 flex items-center place-content-center"
+                className="lg:w-[45%] sm:w-2/3 w-10/12 h-[57px] rounded-full mt-2 mb-1 flex items-center place-content-center"
                 style={{
                   backgroundColor: button_color,
                   color: button_font_color,
@@ -111,14 +111,16 @@ const page = async ({ params }) => {
             )}
           </div>
         ))}
-        <a
-          href="https://blinklink-smoky.vercel.app"
-          className="bg-white text-black flex xl:w-1/5 w-1/2 h-12 rounded-full bottom-5 absolute items-center place-content-center"
-        >
-          <Image src={logo} alt="blinklink" className="h-6 pr-3 w-fit" />
+        <footer className="w-full h-16 flex items-center justify-center">
+          <a
+            href="https://blinklink-smoky.vercel.app"
+            className="bg-white text-black flex xl:w-1/5 md:w-1/3 sm:w-2/3 w-10/12 h-12  rounded-full fixed bottom-1 items-center place-content-center "
+          >
+            <Image src={logo} alt="blinklink" className="h-6 pr-3 w-fit" />
 
-          <p>Create your own BlinkLink</p>
-        </a>
+            <p>Create your own BlinkLink</p>
+          </a>
+        </footer>
       </div>
     </>
   );

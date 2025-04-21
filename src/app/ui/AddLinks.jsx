@@ -481,7 +481,7 @@ const AddLinks = ({ page }) => {
             </button>
           </div>
         )}
-        <div className="mt-5 w-11/12 m-auto p-2">
+        <div className="mt-5 md:w-11/12 w-full m-auto p-2">
           <ReactSortable
             handle={".handle"}
             list={links}

@@ -144,10 +144,10 @@ const Profile = ({ page, user }) => {
   return (
     <>
       {session && (
-        <div className="">
+        <div className="w-full">
           <p className="text-xl m-2">Profile</p>
           <div className="bg-white py-8 px-0 rounded-xl shadow-xl w-full">
-            <div className="h-[60px] relative mx-20 mb-5">
+            <div className="h-[60px] relative md:mx-20 mx-3 mb-5">
               <input
                 type="text"
                 name="username"
@@ -159,7 +159,7 @@ const Profile = ({ page, user }) => {
                 username
               </label>
             </div>
-            <div className=" h-24 relative mx-20 mb-5">
+            <div className=" h-24 relative md:mx-20 mx-3 mb-5">
               <textarea
                 name="bio"
                 value={bio}
@@ -225,8 +225,8 @@ const Profile = ({ page, user }) => {
               </div>
             </div>
 
-            <div className="flex place-content-around mx-5 mt-5">
-              <div className="w-[100px] flex place-content-center">
+            <div className="flex justify-around md:mx-5 mt-5">
+              <div className=" flex justify-center items-center">
                 <input
                   type="color"
                   name="bgcolor"
@@ -235,7 +235,7 @@ const Profile = ({ page, user }) => {
                   className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
                 />
               </div>
-              <div className="h-[60px] relative w-1/2">
+              <div className="h-[60px] relative md:w-1/2 w-3/5">
                 <input
                   type="text"
                   value={bgcolor}
@@ -247,8 +247,8 @@ const Profile = ({ page, user }) => {
                 </label>
               </div>
             </div>
-            <div className="flex place-content-around mx-5 mt-5">
-              <div className="w-[100px] flex place-content-center">
+            <div className="flex justify-around md:mx-5 mt-5">
+              <div className="flex justify-center items-center">
                 <input
                   type="color"
                   name="fontcolor"
@@ -257,7 +257,7 @@ const Profile = ({ page, user }) => {
                   className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
                 />
               </div>
-              <div className="h-[60px] relative w-1/2">
+              <div className="h-[60px] relative md:w-1/2 w-3/5">
                 <input
                   type="text"
                   value={fontcolor}
@@ -269,8 +269,8 @@ const Profile = ({ page, user }) => {
                 </label>
               </div>
             </div>
-            <div className="flex place-content-around mx-5 mt-5">
-              <div className="w-[100px] flex place-content-center">
+            <div className="flex justify-around md:mx-5 mt-5">
+              <div className="flex justify-center items-center">
                 <input
                   type="color"
                   name="buttonbgcolor"
@@ -279,7 +279,7 @@ const Profile = ({ page, user }) => {
                   className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
                 />
               </div>
-              <div className="h-[60px] relative w-1/2">
+              <div className="h-[60px] relative md:w-1/2 w-3/5">
                 <input
                   type="text"
                   value={buttonbgcolor}
@@ -291,8 +291,8 @@ const Profile = ({ page, user }) => {
                 </label>
               </div>
             </div>
-            <div className="flex place-content-around mx-5 mt-5">
-              <div className="w-[100px] flex place-content-center">
+            <div className="flex justify-around md:mx-5 mt-5">
+              <div className="flex justify-center items-center">
                 <input
                   type="color"
                   name="buttonfontcolor"
@@ -301,7 +301,7 @@ const Profile = ({ page, user }) => {
                   className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
                 />
               </div>
-              <div className="h-[60px] relative w-1/2">
+              <div className="h-[60px] relative md:w-1/2 w-3/5">
                 <input
                   type="text"
                   value={buttonfontcolor}
@@ -313,8 +313,8 @@ const Profile = ({ page, user }) => {
                 </label>
               </div>
             </div>
-            <div className="flex place-content-around mx-5 mt-5">
-              <div className="w-[100px] flex place-content-center">
+            <div className="flex justify-around md:mx-5 mt-5">
+              <div className="flex justify-center items-center">
                 <input
                   type="color"
                   name="avatarbordercolor"
@@ -323,7 +323,7 @@ const Profile = ({ page, user }) => {
                   className="p-1 h-[60px] w-[60px] bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none "
                 />
               </div>
-              <div className="h-[60px] relative w-1/2">
+              <div className="h-[60px] relative md:w-1/2 w-3/5">
                 <input
                   type="text"
                   value={avatarbordercolor}
