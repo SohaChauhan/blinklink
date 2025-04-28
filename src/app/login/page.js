@@ -27,7 +27,7 @@ export default function Login() {
   };
   const handleSigninwithGoogle = async () => {
     await signIn("google", {
-      callbackUrl: "http://blinklink-smoky.vercel.app/admin",
+      callbackUrl: "https://blinklink-smoky.vercel.app/admin",
     });
   };
 
